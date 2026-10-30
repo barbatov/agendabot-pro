@@ -16,7 +16,7 @@ Antes de investir semanas desenvolvendo um software completo de agendamento com 
 
 ## 📂 Entregáveis Oficiais do Trabalho
 
-* 🖥️ **[apresentacao-slides.html](./apresentacao-slides.html)** — **Apresentação de Slides Interativa (HTML/CSS):** Apresentação completa do case com 8 slides, simulação visual do WhatsApp, tabela de evidências reais e decisão estratégica.
+* 🖥️ **[Apresentação Interativa de Slides (Abrir Online no GitHub Pages)](https://barbatov.github.io/agendabot-pro/)** *(arquivo fonte: [apresentacao-slides.html](./apresentacao-slides.html))* — Apresentação completa do case com 8 slides, simulação visual do WhatsApp, tabela de evidências reais e decisão estratégica.
 * 📘 **[ENTREGA-1-Parte-Teorica.md](./ENTREGA-1-Parte-Teorica.md)** — **Entregável 1 Completo:** Problema, público e oportunidade; hipóteses de problema, solução e valor; solução inicial e definição do MVP; como a IA foi utilizada no Discovery; experimento escolhido e critérios de sucesso; e matriz prévia de decisão.
 * 📗 **[ENTREGA-2-Parte-Pratica.md](./ENTREGA-2-Parte-Pratica.md)** — **Entregável 2 Completo (Unificado):** Lean Canvas e Value Proposition Canvas; protótipo/demonstração visual + formulário; validação com 5 usuários reais; evidências e dados coletados; síntese dos feedbacks e padrões; comparação hipótese inicial vs. resultados; e decisão final justificada.
 * 📙 **[DOCUMENTO-UNICO-COMPLETO.md](./DOCUMENTO-UNICO-COMPLETO.md)** — **Versão Unificada (Entregáveis 1 + 2 juntos):** Documento consolidado contendo toda a parte teórica e prática em um único arquivo.
