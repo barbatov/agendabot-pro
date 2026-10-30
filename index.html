@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apresentação – AgendaBot Pro (Product Discovery)</title>
+  <style>
+    :root {
+      --bg-primary: #0b0914;
+      --bg-card: #151226;
+      --bg-card-alt: #1d1936;
+      --border-subtle: rgba(130, 87, 229, 0.28);
+      --brand-purple: #8257e5;
+      --brand-purple-light: #996dff;
+      --brand-green: #04d361;
+      --brand-amber: #fba94c;
+      --brand-red: #f75a68;
+      --text-main: #f4f2ff;
+      --text-muted: #a8a2c8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 85% 15%, rgba(130, 87, 229, 0.22), transparent 45%),
+                  radial-gradient(circle at 15% 85%, rgba(4, 211, 97, 0.12), transparent 45%),
+                  var(--bg-primary);
+      color: var(--text-main);
+      min-block-size: 100dvh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.75rem;
+      background: rgba(21, 18, 38, 0.85);
+      backdrop-filter: blur(10px);
+      border-block-end: 1px solid var(--border-subtle);
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: clamp(0.95rem, 0.85rem + 0.3vw, 1.15rem);
+      color: var(--text-main);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(130, 87, 229, 0.2);
+      border: 1px solid var(--brand-purple);
+      color: #dfd2ff;
+    }
+
+    .badge-green {
+      background: rgba(4, 211, 97, 0.16);
+      border-color: var(--brand-green);
+      color: #8affbe;
+    }
+
+    .badge-amber {
+      background: rgba(251, 169, 76, 0.16);
+      border-color: var(--brand-amber);
+      color: #ffd49e;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      cursor: pointer;
+      background: var(--bg-card-alt);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    button:hover {
+      background: var(--brand-purple);
+      border-color: var(--brand-purple-light);
+    }
+
+    /* Slide deck stage */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 2dvh, 2rem) clamp(1rem, 3dvw, 3rem);
+      container-type: inline-size;
+    }
+
+    .slide {
+      display: none;
+      inline-size: min(1180px, 100%);
+      background: rgba(21, 18, 38, 0.92);
+      border: 1px solid var(--border-subtle);
+      border-radius: 1rem;
+      padding: clamp(1.25rem, 2.5vw, 2.5rem);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      container-type: inline-size;
+      animation: fadeIn 0.22s ease-out;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      border-block-end: 1px solid rgba(255, 255, 255, 0.08);
+      padding-block-end: 0.9rem;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 1rem + 1.2vw, 1.95rem);
+      line-height: 1.22;
+      color: var(--text-main);
+    }
+
+    h3 {
+      font-size: clamp(1rem, 0.9rem + 0.35vw, 1.2rem);
+      color: #d9ceff;
+      margin-block-end: 0.45rem;
+    }
+
+    p, li {
+      font-size: clamp(0.92rem, 0.86rem + 0.25vw, 1.05rem);
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+
+    strong {
+      color: var(--text-main);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.15rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
+    }
+
+    @container (width < 760px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card-alt);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.2rem;
+    }
+
+    .card-highlight {
+      border-color: var(--brand-purple);
+      background: linear-gradient(145deg, rgba(130, 87, 229, 0.16), rgba(29, 25, 54, 0.9));
+    }
+
+    .card-green {
+      border-color: var(--brand-green);
+      background: linear-gradient(145deg, rgba(4, 211, 97, 0.14), rgba(29, 25, 54, 0.9));
+    }
+
+    .card-amber {
+      border-color: var(--brand-amber);
+      background: linear-gradient(145deg, rgba(251, 169, 76, 0.14), rgba(29, 25, 54, 0.9));
+    }
+
+    .metric-big {
+      font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.3rem);
+      font-weight: 800;
+      color: var(--brand-green);
+      line-height: 1.1;
+      margin-block-end: 0.25rem;
+    }
+
+    ul.clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    ul.clean-list li {
+      position: relative;
+      padding-inline-start: 1.35rem;
+    }
+
+    ul.clean-list li::before {
+      content: "▸";
+      position: absolute;
+      inset-inline-start: 0;
+      color: var(--brand-green);
+      font-weight: bold;
+    }
+
+    /* WhatsApp Mockup */
+    .wa-box {
+      background: #0b141a;
+      border: 1px solid #22303a;
+      border-radius: 0.85rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .wa-msg {
+      max-inline-size: 88%;
+      padding: 0.6rem 0.85rem;
+      border-radius: 0.65rem;
+      line-height: 1.4;
+      color: #e9edef;
+      font-size: 0.88rem;
+    }
+
+    .wa-client {
+      align-self: flex-start;
+      background: #202c33;
+      border-top-left-radius: 0.15rem;
+    }
+
+    .wa-bot {
+      align-self: flex-end;
+      background: #005c4b;
+      border-top-right-radius: 0.15rem;
+    }
+
+    .wa-time {
+      display: block;
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-align: end;
+      margin-block-start: 0.2rem;
+    }
+
+    /* Responsive Data Table */
+    .table-wrapper {
+      overflow: auto;
+      max-inline-size: 100%;
+      max-block-size: min(460px, 65dvh);
+      container-type: inline-size;
+      border-radius: 0.7rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    table {
+      inline-size: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.86rem;
+    }
+
+    caption {
+      text-align: start;
+      padding: 0.6rem 0.9rem;
+      font-weight: 700;
+      color: #d9ceff;
+      background: #191530;
+      border-block-end: 1px solid var(--border-subtle);
+    }
+
+    thead {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 1;
+      background: #231d42;
+    }
+
+    th, td {
+      padding: 0.65rem 0.75rem;
+      text-align: start;
+      border-block-end: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--text-muted);
+    }
+
+    thead th {
+      color: var(--text-main);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tbody th {
+      position: sticky;
+      inset-inline-start: 0;
+      background: #1a1631;
+      color: var(--text-main);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    @container (width < 600px) {
+      table, thead, tbody, tr, th, td {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-block-end: 1rem;
+        border: 1px solid var(--border-subtle);
+        border-radius: 0.5rem;
+      }
+
+      tbody th {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 2;
+        background: #251f47;
+      }
+
+      table {
+        --label-2: "Msgs/dia";
+        --label-3: "Espera";
+        --label-4: "Perdeu clientes?";
+        --label-5: "Dor Aberta";
+        --label-6: "Nota Demo";
+        --label-7: "Maior Medo";
+        --label-8: "Pagaria?";
+        --label-9: "Piloto 7d";
+      }
+
+      td:nth-child(2)::before { content: var(--label-2) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(3)::before { content: var(--label-3) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(4)::before { content: var(--label-4) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(5)::before { content: var(--label-5) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(6)::before { content: var(--label-6) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(7)::before { content: var(--label-7) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(8)::before { content: var(--label-8) ": "; font-weight: 700; color: var(--text-main); }
+      td:nth-child(9)::before { content: var(--label-9) ": "; font-weight: 700; color: var(--text-main); }
+    }
+
+    .footer-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.75rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border-block-start: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Print / PDF Styles */
+    @media print {
+      body {
+        background: #0b0914 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .topbar, .footer-bar {
+        display: none !important;
+      }
+      .stage {
+        display: block;
+        padding: 0;
+      }
+      .slide {
+        display: flex !important;
+        flex-direction: column;
+        gap: 1.2rem;
+        page-break-after: always;
+        break-after: page;
+        min-block-size: 92vh;
+        margin-block-end: 1rem;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span>🤖 AgendaBot Pro</span>
+      <span class="badge">Product Discovery &amp; Lean Startup</span>
+    </div>
+    <div class="controls">
+      <button type="button" id="btnPrev" aria-label="Slide anterior">◀ Anterior</button>
+      <span id="slideCounter" style="padding: 0 0.6rem; font-weight: 700;">1 / 8</span>
+      <button type="button" id="btnNext" aria-label="Próximo slide">Próximo ▶</button>
+      <button type="button" id="btnPrint" title="Salvar todos os slides em PDF">🖨️ Salvar em PDF</button>
+    </div>
+  </header>
+
+  <main class="stage">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide active" data-slide="1">
+      <div style="display:flex; flex-direction:column; justify-content:center; gap:1.3rem; padding: 1.5rem 0;">
+        <div>
+          <span class="badge badge-green">Rodada de Validação Real • 30/10/2026</span>
+        </div>
+        <h1>Da Hipótese à Evidência:<br><span style="color: var(--brand-purple-light);">AgendaBot Pro</span></h1>
+        <p style="font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.35rem); max-inline-size: 760px;">
+          Validando um assistente de triagem e agendamento com IA no WhatsApp para prestadores de serviço e pequenos negócios através de ciclos rápidos de experimentação.
+        </p>
+        <div class="grid-3" style="margin-block-start: 0.75rem;">
+          <div class="card card-highlight">
+            <h3>🎯 Missão do Discovery</h3>
+            <p>Reduzir incerteza e descobrir se o produto <strong>merece ser desenvolvido</strong> antes de escrever código.</p>
+          </div>
+          <div class="card">
+            <h3>👥 Validação de Campo</h3>
+            <p><strong>5 profissionais reais</strong> entrevistados (Varejista, Manicure, Personal, Publicitário e Cabeleireiro).</p>
+          </div>
+          <div class="card card-green">
+            <h3>🔄 Decisão Baseada em Dados</h3>
+            <p><strong>AJUSTAR (Iterar)</strong> nicho, precificação (até R$ 39/mês) e experiência de configuração.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: PROBLEMA E HIPÓTESES INICIAIS -->
+    <section class="slide" data-slide="2">
+      <div class="slide-header">
+        <div>
+          <span class="badge">1. Problema &amp; Hipóteses Iniciais</span>
+          <h2>Por que os profissionais perdem clientes no WhatsApp?</h2>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>🔥 O Problema Identificado</h3>
+          <ul class="clean-list">
+            <li><strong>Mãos ocupadas durante o atendimento:</strong> Enquanto corta cabelo, faz unha ou atende no balcão, o profissional não consegue responder o WhatsApp.</li>
+            <li><strong>Perda de vendas por demora:</strong> O cliente espera de 30 minutos a 3 horas e fecha com o concorrente que respondeu antes.</li>
+            <li><strong>Rejeição a bots tradicionais:</strong> Menus numéricos (<em>"Digite 1 para agendar"</em>) irritam os clientes e travam quando recebem áudio.</li>
+          </ul>
+        </div>
+
+        <div class="card card-highlight">
+          <h3>🧪 Nossas 3 Hipóteses Iniciais (Antes de ir a campo)</h3>
+          <ul class="clean-list">
+            <li><strong>H1 (Problema):</strong> &ge; 60–80% dos autônomos demoram &gt;30 min para responder enquanto atendem e perdem clientes no mês.</li>
+            <li><strong>H2 (Solução):</strong> Uma IA no WhatsApp que ouve áudios, responde preços e agenda horários terá aprovação &ge; 4 (de 5) em pelo menos 60% da amostra.</li>
+            <li><strong>H3 (Valor e Preço):</strong> &ge; 60% aceitariam pagar entre <strong>R$ 49 e R$ 97/mês</strong> e deixariam seu contato para um piloto gratuito de 7 dias.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: SOLUÇÃO PROPOSTA E EXPERIMENTO -->
+    <section class="slide" data-slide="3">
+      <div class="slide-header">
+        <div>
+          <span class="badge">2. Solução Proposta &amp; MVP de Validação</span>
+          <h2>Demonstração Visual no WhatsApp + Smoke Test</h2>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="wa-box" aria-label="Simulação de conversa no WhatsApp">
+          <div style="font-weight:700; color:#04d361; border-block-end:1px solid #22303a; padding-block-end:0.35rem;">
+            📱 Demonstração Visual Apresentada no Experimento
+          </div>
+          <div class="wa-msg wa-client">
+            🎤 <strong>Áudio (0:10):</strong> "Oi! Queria saber o valor do atendimento e se tem horário livre nessa sexta depois das 15h?"
+            <span class="wa-time">14:12</span>
+          </div>
+          <div class="wa-msg wa-bot">
+            Oi, Camila! Tudo ótimo 😊 O atendimento custa R$ 130 (1h). Na sexta tenho livre às <strong>15:30</strong> ou às <strong>17:00</strong>. Qual fica melhor?
+            <span class="wa-time">14:12 (em 6s) ✓✓</span>
+          </div>
+          <div class="wa-msg wa-client">
+            Quero o das 17:00! Aceita cartão?
+            <span class="wa-time">14:14</span>
+          </div>
+          <div class="wa-msg wa-bot">
+            Aceitamos cartão e Pix! ✅ Pré-reservado para sexta às 17:00. Na quinta te mando um lembrete por aqui!
+            <span class="wa-time">14:14 ✓✓</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🛠️ Como Executamos o Experimento</h3>
+          <ul class="clean-list">
+            <li><strong>Formato:</strong> Teste de Conceito Visual + Formulário Estruturado (10 perguntas no Google Forms).</li>
+            <li><strong>Papel da IA no Discovery:</strong> Usada para estruturar o Lean Canvas, refinar perguntas sem viés (<em>Mom Test</em>), gerar o script do Google Forms e tabular padrões.</li>
+            <li><strong>Regra de Ouro:</strong> <em>IA não valida mercado</em>. O formulário foi aplicado com <strong>5 profissionais reais</strong> e incluiu um <strong>Call-to-Action (Smoke Test)</strong> pedindo Nome e Contato para um piloto de 7 dias.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: EVIDÊNCIAS REAIS COLETADAS (TABELA) -->
+    <section class="slide" data-slide="4">
+      <div class="slide-header">
+        <div>
+          <span class="badge badge-green">3. Evidências Reais Coletadas (30/10/2026)</span>
+          <h2>Respostas dos 5 Profissionais Reais no Google Forms</h2>
+        </div>
+      </div>
+
+      <div tabindex="0" role="region" aria-labelledby="evidencias-table-caption" class="table-wrapper">
+        <table>
+          <caption id="evidencias-table-caption">Base real coletada em 30/10/2026 (5 respondentes)</caption>
+          <thead>
+            <tr>
+              <th>Profissão (ID)</th>
+              <th>Msgs/dia</th>
+              <th>Espera</th>
+              <th>Perdeu vendas (30d)?</th>
+              <th>Maior dor atual (Fala literal)</th>
+              <th>Nota Demo</th>
+              <th>Maior Medo / Receio</th>
+              <th>Quanto pagaria?</th>
+              <th>Inscreveu no Piloto?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>1. Varejista</th>
+              <td>5 a 15</td>
+              <td>30m a 1h</td>
+              <td><strong style="color:var(--brand-green);">Sim, no mês</strong></td>
+              <td><em>"responder e verificar estoque"</em></td>
+              <td><strong>5 / 5</strong></td>
+              <td>Bagunçar agenda / horário</td>
+              <td><strong>Até R$ 39/mês</strong></td>
+              <td>✅ <strong>João Marcos Pereira</strong></td>
+            </tr>
+            <tr>
+              <th>2. Manicure</th>
+              <td>5 a 15</td>
+              <td>1h a 3h</td>
+              <td><strong style="color:var(--brand-green);">Sim, no mês</strong></td>
+              <td><em>"Ter que fazer tudo meio que sozinha"</em></td>
+              <td><strong>4 / 5</strong></td>
+              <td><strong>Difícil de configurar e mexer</strong></td>
+              <td><strong>Até R$ 39/mês</strong></td>
+              <td>✅ <strong>Katia de Jesus Pereira</strong></td>
+            </tr>
+            <tr>
+              <th>3. Personal Trainer</th>
+              <td>&lt; 5</td>
+              <td>&lt; 15 min</td>
+              <td>Raramente / nunca</td>
+              <td><em>"nenhuma"</em></td>
+              <td>3 / 5</td>
+              <td>Cliente achar atendimento frio</td>
+              <td>Não pagaria</td>
+              <td>❌ Não tem interesse</td>
+            </tr>
+            <tr>
+              <th>4. Publicitário</th>
+              <td>5 a 15</td>
+              <td>30m a 1h</td>
+              <td>Raramente / nunca</td>
+              <td><em>"Entender o que o cliente quer"</em></td>
+              <td>4 / 5</td>
+              <td><em>"Ser menos humana"</em></td>
+              <td>Não pagaria</td>
+              <td>❌ Não tem interesse</td>
+            </tr>
+            <tr>
+              <th>5. Cabeleireiro</th>
+              <td>5 a 15</td>
+              <td>30m a 1h</td>
+              <td><strong style="color:var(--brand-green);">Sim, no mês</strong></td>
+              <td><em>"fazer os agendamentos"</em></td>
+              <td><strong>5 / 5</strong></td>
+              <td><strong>Difícil de configurar e mexer</strong></td>
+              <td><strong>Até R$ 39/mês</strong></td>
+              <td>✅ <strong>Robson A. de Jesus</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: MÉTRICAS E COMPARAÇÃO HIPÓTESE VS REALIDADE -->
+    <section class="slide" data-slide="5">
+      <div class="slide-header">
+        <div>
+          <span class="badge">4. Hipótese Inicial vs. Realidade</span>
+          <h2>O que os dados confirmaram e o que eles contrariaram?</h2>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <div class="card card-green">
+          <div class="metric-big">80%</div>
+          <p><strong>Aprovaram a Demo Visual</strong> (4 de 5 deram nota 4 ou 5; média 4,67 nos pagantes).</p>
+        </div>
+        <div class="card card-green">
+          <div class="metric-big">60%</div>
+          <p><strong>Conversão no Piloto</strong> (3 de 5 deixaram nome para testar por 7 dias).</p>
+        </div>
+        <div class="card card-amber">
+          <div class="metric-big" style="color:var(--brand-amber);">R$ 39</div>
+          <p><strong>Teto Real de Preço:</strong> 100% dos pagantes escolheram <em>Até R$ 39/mês</em> (e não R$ 49–97).</p>
+        </div>
+        <div class="card card-highlight">
+          <div class="metric-big" style="color:var(--brand-purple-light);">UX</div>
+          <p><strong>Maior Medo na Beleza:</strong> <em>"Ser difícil de configurar e mexer"</em> (Manicure e Cabeleireiro).</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>✅ O que foi CONFIRMADO</h3>
+          <ul class="clean-list">
+            <li><strong>Dor real em Beleza e Varejo:</strong> A manicure (<em>"fazer tudo meio que sozinha"</em>), o cabeleireiro (<em>"fazer os agendamentos"</em>) e o varejista (<em>"responder e verificar estoque"</em>) perdem vendas no mês e querem a solução.</li>
+            <li><strong>Desejo de automação real:</strong> Tanto a manicure quanto o cabeleireiro escolheram <strong>"Agendar automaticamente nos horários livres"</strong> como função nº 1.</li>
+          </ul>
+        </div>
+        <div class="card card-amber">
+          <h3>🔄 O que CONTRARIOU nossa hipótese (Insights Valiosos!)</h3>
+          <ul class="clean-list">
+            <li><strong>Erro na hipótese de Preço (R$ 49–97):</strong> Como recebem de 5 a 15 mensagens/dia, ninguém aceitou pagar acima de R$ 49. Todos escolheram <strong>Até R$ 39/mês</strong>.</li>
+            <li><strong>Erro na hipótese de Objeção:</strong> Achávamos que teriam medo de a IA errar, mas o maior medo real dos pagantes de beleza é <strong>a ferramenta ser difícil de configurar</strong>.</li>
+            <li><strong>Nicho onde NÃO funciona:</strong> Personal Trainer (&lt;5 msgs/dia) e Publicitário (briefing criativo) não perdem clientes por demora e não pagariam.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: LEAN CANVAS VALIDADO -->
+    <section class="slide" data-slide="6">
+      <div class="slide-header">
+        <div>
+          <span class="badge">5. Canvas de Produto Pós-Validação</span>
+          <h2>Lean Canvas Ajustado pelas Evidências</h2>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. Problema &amp; Segmento</h3>
+          <p><strong>Problema:</strong> Demora de 30m a 3h para responder no WhatsApp enquanto atende ("fazer tudo sozinho").</p>
+          <p style="margin-block-start:0.45rem;"><strong>Early Adopters Validados:</strong> Profissionais de Beleza (Manicures, Cabeleireiros, Barbeiros) e Pequeno Varejo Local.</p>
+        </div>
+        <div class="card card-highlight">
+          <h3>2. Proposta de Valor &amp; Solução</h3>
+          <p><strong>PUV:</strong> Secretária IA no WhatsApp que responde em 6s e agenda clientes sem painéis difíceis de mexer.</p>
+          <p style="margin-block-start:0.45rem;"><strong>Solução MVP:</strong> Agendamento automático (Beleza) + Modo Aprovação 1-Clique (Varejo) + Configuração por áudio.</p>
+        </div>
+        <div class="card card-green">
+          <h3>3. Viabilidade Financeira</h3>
+          <p><strong>Receita Ajustada:</strong> Assinatura de <strong>R$ 34,90/mês</strong> (dentro do teto validado de até R$ 39/mês).</p>
+          <p style="margin-block-start:0.45rem;"><strong>Custos:</strong> 5 a 15 mensagens/dia consomem <strong>menos de R$ 2,00/mês</strong> em tokens de IA por cliente (margem &gt; 90%).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: DECISÃO FINAL E PRÓXIMOS PASSOS -->
+    <section class="slide" data-slide="7">
+      <div class="slide-header">
+        <div>
+          <span class="badge badge-green">6. Decisão Estratégica &amp; Próximo Passo</span>
+          <h2>Decisão Final: AJUSTAR (Iterar antes de construir)</h2>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card card-highlight">
+          <h3>1º Ajuste: Foco de Nicho</h3>
+          <p>Concentrar o produto em <strong>Beleza/Estética (Cabeleireiros e Manicures)</strong> e <strong>Comércio Local</strong>, onde 100% converteram. Descartar serviços consultivos (Publicitários) e de baixo giro diário (Personal Trainers).</p>
+        </div>
+        <div class="card card-amber">
+          <h3>2º Ajuste: Ticket de R$ 34,90</h3>
+          <p>Abandonar a faixa hipotética de R$ 49–97/mês (que teria 0% de conversão) e lançar o plano a <strong>R$ 34,90/mês</strong>, alinhado ao teto de R$ 39/mês validado pelos 3 compradores.</p>
+        </div>
+        <div class="card card-green">
+          <h3>3º Ajuste: Onboarding Zero-Painel</h3>
+          <p>Para eliminar o medo de <em>"ser difícil de configurar e mexer"</em>, o profissional não usará nenhum site complexo: ele configurará seus horários e preços mandando um simples áudio no próprio WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h3>🚀 Próximo Passo Recomendado (Ciclo 2 de Validação)</h3>
+          <p>Rodar o <strong>MVP Concierge de 7 dias</strong> na próxima semana com os 3 profissionais reais inscritos na pesquisa: <strong>João Marcos Pereira (Varejista), Katia de Jesus Pereira (Manicure) e Robson Aparecido de Jesus (Cabeleireiro)</strong>.</p>
+        </div>
+        <span class="badge badge-green" style="font-size:0.9rem; padding:0.5rem 1rem;">3 Usuários Prontos para o Piloto!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: RESUMO EXECUTIVO / ENCERRAMENTO -->
+    <section class="slide" data-slide="8">
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:1.1rem; padding: 2rem 1rem;">
+        <span class="badge badge-green">Product Discovery Concluído</span>
+        <h1>Obrigado!</h1>
+        <p style="max-inline-size: 640px; font-size: 1.1rem;">
+          <em>"O objetivo não é desenvolver o produto completo antes da hora — é reduzir a incerteza com evidências reais de mercado."</em>
+        </p>
+        <div class="grid-3" style="inline-size:100%; margin-block-start:1rem; text-align:start;">
+          <div class="card">
+            <h3>📄 Parte 1 (Teórica)</h3>
+            <p>Hipóteses de Problema, Solução e Valor + Matriz Prévia de Decisão.</p>
+          </div>
+          <div class="card">
+            <h3>📊 Parte 2 (Prática)</h3>
+            <p>Lean Canvas + Demo Visual + Google Forms com 5 Profissionais Reais.</p>
+          </div>
+          <div class="card card-green">
+            <h3>🔄 Resultado Final</h3>
+            <p>Decisão: <strong>AJUSTAR</strong> (Nicho, Ticket R$ 34,90 e UX Zero-Painel) + 3 inscritos no Piloto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-bar">
+    <span>Use as setas do teclado (<strong>←</strong> / <strong>→</strong>) para trocar de slide</span>
+    <span>Case de Portfólio • Metodologias Ágeis e Validação de Produtos</span>
+  </footer>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const counter = document.getElementById('slideCounter');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnPrint = document.getElementById('btnPrint');
+    let current = 0;
+
+    function showSlide(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+
+    btnPrev.addEventListener('click', () => showSlide(current - 1));
+    btnNext.addEventListener('click', () => showSlide(current + 1));
+
+    btnPrint.addEventListener('click', () => {
+      window.print();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') showSlide(current + 1);
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') showSlide(current - 1);
+    });
+  </script>
+</body>
+</html>
