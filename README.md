@@ -16,8 +16,8 @@ Antes de investir semanas desenvolvendo um software completo de agendamento com 
 
 ## 📂 Entregáveis Oficiais do Trabalho
 
-* 🖥️ **[Apresentação Limpa – Sem Falas/Tempo (Abrir Online)](https://barbatov.github.io/agendabot-pro/)** *(arquivo: [apresentacao-slides.html](./apresentacao-slides.html))* — Versão limpa ideal para projetar e apresentar ao vivo na faculdade.
-* 🎙️ **[Apresentação com Roteiro do Pitch e Tempo (Abrir Online)](https://barbatov.github.io/agendabot-pro/apresentacao-com-roteiro.html)** *(arquivo: [apresentacao-com-roteiro.html](./apresentacao-com-roteiro.html))* — Versão com as falas sugeridas e minutagem de cada slide já abertas na tela para estudo ou gravação do vídeo de 4 minutos.
+* 🖥️ **[Apresentação (Abrir Online)](https://barbatov.github.io/agendabot-pro/)** *(arquivo: [apresentacao-slides.html](./apresentacao-slides.html))* — Versão limpa ideal para projetar e apresentar ao vivo na faculdade.
+
 * 📘 **[ENTREGA-1-Parte-Teorica.md](./ENTREGA-1-Parte-Teorica.md)** — **Entregável 1 Completo:** Problema, público e oportunidade; hipóteses de problema, solução e valor; solução inicial e definição do MVP; como a IA foi utilizada no Discovery; experimento escolhido e critérios de sucesso; e matriz prévia de decisão.
 * 📗 **[ENTREGA-2-Parte-Pratica.pdf](./ENTREGA-2-Parte-Pratica.pdf)** — **Entregável 2 Completo em PDF (Unificado + Prints do Google Forms):** Lean Canvas e Value Proposition Canvas; protótipo/demonstração visual + formulário; validação com 5 usuários reais; tabela e capturas de tela oficiais das respostas no Google Forms; síntese dos feedbacks e padrões; comparação hipótese inicial vs. resultados; e decisão final justificada *(também disponível separado em [02-parte-pratica-canvas-e-experimento.pdf](./02-parte-pratica-canvas-e-experimento.pdf) e [03-parte-pratica-evidencias-e-decisao.pdf](./03-parte-pratica-evidencias-e-decisao.pdf))*.
 * 🖼️ **[evidencias-forms/](./evidencias-forms/)** — Prints oficiais das respostas e gráficos gerados no Google Forms com os 5 profissionais entrevistados.
