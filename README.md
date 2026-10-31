@@ -16,7 +16,8 @@ Antes de investir semanas desenvolvendo um software completo de agendamento com 
 
 ## 📂 Entregáveis Oficiais do Trabalho
 
-* 🖥️ **[Apresentação Interativa de Slides (Abrir Online no GitHub Pages)](https://barbatov.github.io/agendabot-pro/)** *(arquivo fonte: [apresentacao-slides.html](./apresentacao-slides.html))* — Apresentação completa do case com 8 slides, simulação visual do WhatsApp, tabela de evidências reais e decisão estratégica.
+* 🖥️ **[Apresentação Limpa – Sem Falas/Tempo (Abrir Online)](https://barbatov.github.io/agendabot-pro/)** *(arquivo: [apresentacao-slides.html](./apresentacao-slides.html))* — Versão limpa ideal para projetar e apresentar ao vivo na faculdade.
+* 🎙️ **[Apresentação com Roteiro do Pitch e Tempo (Abrir Online)](https://barbatov.github.io/agendabot-pro/apresentacao-com-roteiro.html)** *(arquivo: [apresentacao-com-roteiro.html](./apresentacao-com-roteiro.html))* — Versão com as falas sugeridas e minutagem de cada slide já abertas na tela para estudo ou gravação do vídeo de 4 minutos.
 * 📘 **[ENTREGA-1-Parte-Teorica.md](./ENTREGA-1-Parte-Teorica.md)** — **Entregável 1 Completo:** Problema, público e oportunidade; hipóteses de problema, solução e valor; solução inicial e definição do MVP; como a IA foi utilizada no Discovery; experimento escolhido e critérios de sucesso; e matriz prévia de decisão.
 * 📗 **[ENTREGA-2-Parte-Pratica.md](./ENTREGA-2-Parte-Pratica.md)** — **Entregável 2 Completo (Unificado):** Lean Canvas e Value Proposition Canvas; protótipo/demonstração visual + formulário; validação com 5 usuários reais; evidências e dados coletados; síntese dos feedbacks e padrões; comparação hipótese inicial vs. resultados; e decisão final justificada.
 * 📙 **[DOCUMENTO-UNICO-COMPLETO.md](./DOCUMENTO-UNICO-COMPLETO.md)** — **Versão Unificada (Entregáveis 1 + 2 juntos):** Documento consolidado contendo toda a parte teórica e prática em um único arquivo.
