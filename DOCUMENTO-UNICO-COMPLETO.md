@@ -165,6 +165,19 @@ O experimento foi respondido em **`30/10/2026`** por **5 profissionais reais**: 
 | `30/10/2026 15:45:48` | **Publicitário** | Entre 5 e 15 por dia | Entre 30 min e 1 hora | **Raramente ou nunca acontece** | *"Entender o que o cliente quer"* | **4** | *"Ser menos humana"* | Responder preços e dúvidas básicas na hora (ouvindo áudios) | **Não pagaria** (prefiro responder manualmente) | ❌ *Não tenho interesse* |
 | `30/10/2026 15:47:33` | **Cabelereiro** | Entre 5 e 15 por dia | Entre 30 min e 1 hora | **Sim, aconteceu algumas vezes no mês** | *"fazer os agendamentos"* | **5** | **Medo de ser difícil de configurar e mexer** | **Agendar automaticamente nos meus horários livres** | **Até R$ 39/mês** | ✅ **Robson Aparecido de Jesus** |
 
+### 3.1 Prints Oficiais das Respostas no Google Forms (Evidências Visuais)
+
+1. **Perguntas 1 e 2 (Profissão Principal e Volume Diário de Mensagens no WhatsApp):**
+   ![Perguntas 1 e 2](./evidencias-forms/01-perguntas-1-e-2-profissao-e-volume.png)
+2. **Perguntas 3, 4 e 5 (Tempo de Espera durante Atendimento, Perda de Clientes nos últimos 30 dias e Parte mais cansativa):**
+   ![Perguntas 3, 4 e 5](./evidencias-forms/02-perguntas-3-4-e-5-tempo-perda-e-dores.png)
+3. **Perguntas 6 e 7 (Nota de 1 a 5 para a Demonstração do AgendaBot Pro e Maior Receio/Medo com a IA):**
+   ![Perguntas 6 e 7](./evidencias-forms/03-perguntas-6-e-7-nota-demo-e-receios.png)
+4. **Perguntas 8 e 9 (Função Mais Importante e Disposição a Pagar Mensalmente):**
+   ![Perguntas 8 e 9](./evidencias-forms/04-perguntas-8-e-9-funcoes-e-preco.png)
+5. **Perguntas 9 e 10 (Sensibilidade a Preço e Inscritos Reais no Teste Piloto de 7 Dias):**
+   ![Perguntas 9 e 10](./evidencias-forms/05-perguntas-9-e-10-preco-e-inscritos-piloto.png)
+
 ---
 
 ## 4. Síntese dos Principais Feedbacks e Padrões Identificados
